@@ -29,7 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  sliding_switch: ^1.0.0
+  syncfusion_flutter_sliders: ^19.4.40
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -63,6 +64,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/pizza.png
+    - assets/images/bg.jpg
+    - assets/images/cheese.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -89,15 +92,23 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   fonts:
-    - family: Inter
+    - family: Amatic
       fonts:
-        - asset: assets/fonts/Inter-Black.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
-        - asset: assets/fonts/Inter-ExtraBold.ttf
-        - asset: assets/fonts/Inter-ExtraLight.ttf
-        - asset: assets/fonts/Inter-Light.ttf
-        - asset: assets/fonts/Inter-Medium.ttf
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-SemiBold.ttf
-        - asset: assets/fonts/Inter-Thin.ttf
-        - asset: assets/fonts/Inter-VariableFont.ttf
+        - asset: assets/fonts/AmaticSC-Bold.ttf
+    - family: Neucha
+      fonts:
+        - asset: assets/fonts/Neucha-Regular.ttf
+    - family: Yanone
+      fonts:
+        - asset: assets/fonts/YanoneKaffeesatz-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/YanoneKaffeesatz-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/YanoneKaffeesatz-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/YanoneKaffeesatz-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/YanoneKaffeesatz-Light.ttf
+          weight: 300
+        - asset: assets/fonts/YanoneKaffeesatz-ExtraLight.ttf
+          weight: 200
