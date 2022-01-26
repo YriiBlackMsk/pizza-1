@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizza/theme.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -17,7 +18,6 @@ class _MyAppState extends State<MyApp>{
   int _cost = 290;
   SauceName? _sauceName = SauceName.hot;
   bool _cheese = false;
-  Color _bgColor = const Color.fromRGBO(200, 200, 200, 0.75);
 
   void _slideThin(bool val){
     setState(() {
@@ -87,10 +87,7 @@ class _MyAppState extends State<MyApp>{
     );
     return MaterialApp(
       title: 'Калькулятор пиццы',
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-        fontFamily: 'Yanone',
-      ),
+      theme: globalTheme(),
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -108,9 +105,9 @@ class _MyAppState extends State<MyApp>{
                 child: SizedBox(width: 232, height: 123, child: Image.asset('assets/images/pizza.png'),),
               ),
               const SizedBox(height: 20,),
-              const Text('Калькулятор пиццы', style: headerTextStyle),
+              Text('Калькулятор пиццы', ),
               const SizedBox(height: 9,),
-              const Text('Выберите параметры:', style: descriptionTextStyle),
+              Text('Выберите параметры:', style: Theme.of(context).textTheme.headline4),
               const SizedBox(height: 9,),
               SlidingSwitch(
 
@@ -124,9 +121,9 @@ class _MyAppState extends State<MyApp>{
                 width: 300,
                 colorOn: Colors.brown,
                 colorOff: Colors.brown,
-                buttonColor: Color.fromRGBO(206, 188, 160, 1),
-                inactiveColor: Color.fromRGBO(130, 130, 130, 1),
-                background: _bgColor,
+                buttonColor: const Color.fromRGBO(206, 188, 160, 1),
+                inactiveColor: Colors.grey,
+                background: bgColor,
 
               ),
               const SizedBox(height: 20,),
@@ -179,7 +176,7 @@ class _MyAppState extends State<MyApp>{
                 margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
                 padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
                 decoration: BoxDecoration(
-                  color: const Color.fromRGBO(200, 200, 200, 0.75),
+                  color: bgColor,
                   borderRadius: BorderRadius.circular(10),
 
                 ),
@@ -199,6 +196,7 @@ class _MyAppState extends State<MyApp>{
                       Expanded(
                         flex: 1,
                         child: Switch(
+                            activeColor: Colors.brown,
                             value: _cheese,
                             onChanged: _onCheeseClick
                         ),
@@ -214,7 +212,7 @@ class _MyAppState extends State<MyApp>{
                 margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
                 padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
                 decoration: BoxDecoration(
-                  color: _bgColor,
+                  color: bgColor,
                   borderRadius: BorderRadius.circular(10),
 
                 ),
