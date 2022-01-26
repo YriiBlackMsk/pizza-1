@@ -88,162 +88,170 @@ class _MyAppState extends State<MyApp>{
     return MaterialApp(
       title: 'Калькулятор пиццы',
       theme: globalTheme(),
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/bg.jpg'),
-                repeat: ImageRepeat.repeat,
-              )
-          ),
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              Container(
-                alignment: Alignment.centerRight,
-                child: SizedBox(width: 232, height: 123, child: Image.asset('assets/images/pizza.png'),),
+      home: Builder(
+        builder: (context){
+          return Scaffold(
+            body: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/bg.jpg'),
+                    repeat: ImageRepeat.repeat,
+                  )
               ),
-              const SizedBox(height: 20,),
-              Text('Калькулятор пиццы', ),
-              const SizedBox(height: 9,),
-              Text('Выберите параметры:', style: Theme.of(context).textTheme.headline4),
-              const SizedBox(height: 9,),
-              SlidingSwitch(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: SizedBox(width: 232, height: 123, child: Image.asset('assets/images/pizza.png'),),
+                  ),
+                  const SizedBox(height: 20,),
+                  Text('Калькулятор пиццы',  style: Theme.of(context).textTheme.headline3),
+                  const SizedBox(height: 9,),
+                  Text('Выберите параметры:', style: Theme.of(context).textTheme.headline4),
+                  const SizedBox(height: 9,),
+                  SlidingSwitch(
 
-                value: false,
-                onChanged: _slideThin,
-                onSwipe: () {},
-                onDoubleTap: () {},
-                onTap: () {},
-                textOff: "Обычное тесто",
-                textOn: "Тонкое тесто",
-                width: 300,
-                colorOn: Colors.brown,
-                colorOff: Colors.brown,
-                buttonColor: const Color.fromRGBO(206, 188, 160, 1),
-                inactiveColor: Colors.grey,
-                background: bgColor,
+                    value: false,
+                    onChanged: _slideThin,
+                    onSwipe: () {},
+                    onDoubleTap: () {},
+                    onTap: () {},
+                    textOff: "Обычное тесто",
+                    textOn: "Тонкое тесто",
+                    width: 300,
+                    colorOn: Theme.of(context).primaryColor,
+                    colorOff: Theme.of(context).primaryColor,
+                    buttonColor: Theme.of(context).backgroundColor,
+                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                    background: Theme.of(context).canvasColor,
 
-              ),
-              const SizedBox(height: 20,),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const Text('Размер:', style: descriptionTextStyle)),
-              const SizedBox(height: 9,),
-              SizedBox(
-                width: 300,
-                child: SfSlider(
-                  value: _size,
-                  min: 20,
-                  max: 60,
-                  interval: 20,
-                  showTicks: true,
-                  showLabels: true,
+                  ),
+                  const SizedBox(height: 20,),
+                  Container(
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('Размер:', style: Theme.of(context).textTheme.headline4)),
+                  const SizedBox(height: 9,),
+                  SizedBox(
+                    width: 300,
+                    child: SfSlider(
+                      value: _size,
+                      min: 20,
+                      max: 60,
+                      interval: 20,
+                      showTicks: true,
+                      showLabels: true,
 //                    numberFormat: NumberFormat("## см"),
-                  enableTooltip: false,
-                  minorTicksPerInterval: 0,
-                  stepSize: 20,
-                  onChanged: _onSizeChange,
+                      enableTooltip: false,
+                      minorTicksPerInterval: 0,
+                      stepSize: 20,
+                      onChanged: _onSizeChange,
 
+                    ),
+                  ),
+                  const SizedBox(height: 9,),
+                  Container(
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('Соус:', style: Theme.of(context).textTheme.headline4)),
+                  RadioListTile<SauceName>(
+                      title: Text('Острый', style: Theme.of(context).textTheme.headline5),
+                      activeColor: Theme.of(context).primaryColor,
+                      value: SauceName.hot,
+                      groupValue: _sauceName,
+                      onChanged: _onSauceClick
+                  ),
+                  RadioListTile<SauceName>(
+                      title: Text('Кисло-сладкий', style: Theme.of(context).textTheme.headline5),
+                      activeColor: Theme.of(context).primaryColor,
+                      value: SauceName.sweet,
+                      groupValue: _sauceName,
+                      onChanged: _onSauceClick
+                  ),
+                  RadioListTile<SauceName>(
+                      title: Text('Сырный', style: Theme.of(context).textTheme.headline5),
+                      activeColor: Theme.of(context).primaryColor,
+                      value: SauceName.cheesy,
+                      groupValue: _sauceName,
+                      onChanged: _onSauceClick
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.circular(10),
+
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Image.asset('assets/images/cheese.png', scale: 10,)),
+                          Expanded(
+                              flex: 3,
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Text('Больше сыра!', style: Theme.of(context).textTheme.headline4)
+                              )
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Switch(
+                                activeColor: Colors.brown,
+                                value: _cheese,
+                                onChanged: _onCheeseClick
+                            ),
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 20,),
+                  Container(
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('Стоимость:', style: Theme.of(context).textTheme.headline4)),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.circular(10),
+
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              flex: 3,
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Text('$_cost руб.', style: Theme.of(context).textTheme.headline4)
+                              )
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 20,),
+                  SizedBox(width: 154, height: 60,
+                    child: ElevatedButton(onPressed: () {}, child: Text('Заказать', style: Theme.of(context).textTheme.headline4),
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).backgroundColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(36.0),
+                          ),
+                        )),
+                  ),
+                  const SizedBox(height: 20,),
+                ],
                 ),
               ),
-              const SizedBox(height: 9,),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const Text('Соус:', style: descriptionTextStyle)),
-              RadioListTile<SauceName>(
-                  title: const Text('Острый', style: elementTextStyle),
-                  value: SauceName.hot,
-                  groupValue: _sauceName,
-                  onChanged: _onSauceClick
-              ),
-              RadioListTile<SauceName>(
-                  title: const Text('Кисло-сладкий', style: elementTextStyle),
-                  value: SauceName.sweet,
-                  groupValue: _sauceName,
-                  onChanged: _onSauceClick
-              ),
-              RadioListTile<SauceName>(
-                  title: const Text('Сырный', style: elementTextStyle),
-                  value: SauceName.cheesy,
-                  groupValue: _sauceName,
-                  onChanged: _onSauceClick
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
-                padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(10),
-
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Image.asset('assets/images/cheese.png', scale: 10,)),
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                              alignment: Alignment.center,
-                              child: const Text('Больше сыра!', style: descriptionTextStyle)
-                          )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Switch(
-                            activeColor: Colors.brown,
-                            value: _cheese,
-                            onChanged: _onCheeseClick
-                        ),
-                      ),
-                    ]),
-              ),
-              const SizedBox(height: 20,),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const Text('Стоимость:', style: descriptionTextStyle)),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
-                padding: const EdgeInsets.symmetric(vertical:10, horizontal: 10),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(10),
-
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                              alignment: Alignment.center,
-                              child: Text('$_cost руб.', style: descriptionTextStyle)
-                          )
-                      ),
-                    ]),
-              ),
-              const SizedBox(height: 20,),
-              SizedBox(width: 154, height: 60,
-                child: ElevatedButton(onPressed: () {}, child: Text('Заказать', style: descriptionTextStyle),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(206, 188, 160, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(36.0),
-                      ),
-                    )),
-              ),
-              const SizedBox(height: 20,),
-            ],
             ),
-          ),
-        ),
+          );
+        }
       ),
+
     );
   }
 }
